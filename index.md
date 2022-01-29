@@ -1,6 +1,6 @@
-# `.subsln` file format
+# .Subsln file format
 
-`.subsln` file format is used by [SubSolution tools](https://github.com/ReMinoer/SubSolution) to describe the content of Visual Studio solutions with a more user-friendly syntax than the `.sln` format. You can generate a Visual Studio solution from it or update an existing one.
+.Subsln file format is used by [SubSolution tools](https://github.com/ReMinoer/SubSolution) to describe the content of Visual Studio solutions with a more user-friendly syntax than the .sln format. You can generate a Visual Studio solution from it or update an existing one.
 
 ```xml
 <SubSolutionConfiguration xmlns="http://subsln.github.io/">
@@ -16,7 +16,7 @@
 </SubSolutionConfiguration>
 ```
 
-# Why use a `.subsln` file ?
+# Why use a .subsln file ?
 
 - It allows you to __express your organization rules__ ("those projects in that folder, unit tests in that one...") and __ensure they are respected__ on solution changes.
 - It acts as a __substitute or edition assistant__ of .sln files, to describe the solution content with a __user-friendly structure__ similar to Visual Studio representation.
