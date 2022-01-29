@@ -3,7 +3,7 @@
 .Subsln files are used by [SubSolution tools](https://github.com/ReMinoer/SubSolution) to describe the content of Visual Studio solutions with a more user-friendly syntax than the .sln format. You can generate a Visual Studio solution from it or update an existing one.
 
 ```xml
-<SubSolutionConfiguration xmlns="http://subsln.github.io/">
+<Subsln xmlns="http://subsln.github.io/">
     <Root>
         <Folder Name="Tools">
             <Files Path="tools/*.bat" />
@@ -13,7 +13,7 @@
         </Folder>
         <Projects Path="src/">
     </Root>
-</SubSolutionConfiguration>
+</Subsln>
 ```
 
 # Why use a .subsln file ?
@@ -44,4 +44,4 @@
     - Match them with project configurations and platforms: `<ProjectConfiguration>` / `<ProjectPlatform>`
 - And a lot more options as XML attributes !
 
-*A detailed documentation will be provided soon. In the meantime, you can find the [XML schema here](https://github.com/ReMinoer/SubSolution/blob/master/Sources/SubSolution.Builders/SubSolutionConfiguration.xsd).*
+*A detailed documentation will be provided soon. In the meantime, you can find the [XML schema here](https://github.com/ReMinoer/SubSolution/blob/master/Sources/SubSolution.Builders/subsln.xsd).*
