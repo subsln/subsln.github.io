@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+# `.subsln` file format
 
-You can use the [editor on GitHub](https://github.com/subsln/subsln.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+`.subsln` file format is used by [SubSolution tools](https://github.com/ReMinoer/SubSolution) to describe the content of Visual Studio solutions with a more user-friendly syntax than the `.sln` format. You can generate a Visual Studio solution from it or update an existing one.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```xml
+<SubSolutionConfiguration xmlns="http://subsln.github.io/">
+    <Root>
+        <Folder Name="Tools">
+            <Files Path="tools/*.bat" />
+        </Folder>
+        <Folder Name="Tests">
+            <Projects Path="**/*.Tests.csproj" />
+        </Folder>
+        <Projects Path="src/">
+    </Root>
+</SubSolutionConfiguration>
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+# Why use a `.subsln` file ?
 
-### Jekyll Themes
+- It allows you to __express your organization rules__ ("those projects in that folder, unit tests in that one...") and __ensure they are respected__ on solution changes.
+- It acts as a __substitute or edition assistant__ of .sln files, to describe the solution content with a __user-friendly structure__ similar to Visual Studio representation.
+- It can also be used as a punctual tool, to __apply a one-time update__.
+- It allows to __quickly iterate__ on your solution structure until it matches your needs, without requiring to run Visual Studio.
+- It can __build an entirely customized hierarchy__, or at contrary __mirror your file system structure__.
+- It can __find and fill your solution with dependencies__ of your central projects.
+- It can describe solutions __in a modular way__ by including the content of a solution into another.
+- It can __apply changes to multiple solutions__ sharing the same projects.
+- It can __divide a big solution in smaller ones__ to reduce impact on Visual Studio performances.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/subsln/subsln.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+# XML Syntax
 
-### Support or Contact
+- Describe your item hierarchy: `<Root>`
+    - Create folders to organize your items: `<Folder>`
+    - Add projects with glob patterns: `<Projects>`
+    - Add files for quick-access: `<Files>`
+    - Find project dependencies and dependents: `<Dependencies>` / `<Dependents>`
+    - Include the content of existing solutions: `<Solutions>` / `<SubSolutions>`
+    - Select what you want to keep from other solutions: `<KeepOnly>`
+    - Apply complex filters on your item sources: `<Where>`
+- Setup your solution configuration-platforms: `<Configurations>` / `<Platforms>`
+    - Ignore them to auto-generate from projects.
+    - Create new ones: `<SolutionConfiguration>` / `<SolutionPlatform>`
+    - Match them with project configurations and platforms: `<ProjectConfiguration>` / `<ProjectPlatform>`
+- And a lot more options as XML attributes !
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+You can find the [XML schema here](https://github.com/ReMinoer/SubSolution/blob/master/Sources/SubSolution.Builders/SubSolutionConfiguration.xsd).
